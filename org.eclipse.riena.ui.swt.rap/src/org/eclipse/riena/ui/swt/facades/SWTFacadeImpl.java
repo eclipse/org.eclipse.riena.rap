@@ -48,11 +48,6 @@ public class SWTFacadeImpl extends SWTFacade {
 	}
 
 	@Override
-	public Listener createTableItemEraser() {
-		return null;
-	}
-
-	@Override
 	public Listener createTreeItemEraserAndPainter() {
 		return null;
 	}
