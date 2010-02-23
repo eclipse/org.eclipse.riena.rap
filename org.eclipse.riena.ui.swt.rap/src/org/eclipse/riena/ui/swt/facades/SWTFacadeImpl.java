@@ -14,13 +14,14 @@ import java.util.EventListener;
 
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
 /**
  * TODO [ev] docs
  */
-public class SWTFacadeImpl extends SWTFacade {
+public final class SWTFacadeImpl extends SWTFacade {
 
 	@Override
 	public void addEraseItemListener(Table table, Listener listener) {
@@ -70,6 +71,11 @@ public class SWTFacadeImpl extends SWTFacade {
 	@Override
 	public void removePaintListener(Control control, EventListener listener) {
 		// do nothing
+	}
+
+	@Override
+	public void setDigits(Spinner control, int digits) {
+		throw new UnsupportedOperationException("Spinner.setDigits(...) is not available");
 	}
 
 }
