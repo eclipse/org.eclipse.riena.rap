@@ -8,22 +8,19 @@
  * Contributors:
  *    compeople AG - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.riena.ui.swt.facades;
 
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
+import org.eclipse.swt.graphics.GC;
 
 /**
- * Implements {@link ActionFactoryFacade} for RAP.
+ * Implements {@link GCFacade} for RAP.
  */
-public final class ActionFactoryFacadeImpl extends ActionFactoryFacade {
+public class GCFacadeRAP extends GCFacade {
 
-	/**
-	 * Always returns null.
-	 */
 	@Override
-	public IWorkbenchAction createAboutAction(IWorkbenchWindow window) {
-		return null;
+	public void drawRoundRectangle(GC gc, int x, int y, int width, int height, int arcWidth, int arcHeight) {
+		// do nothing
 	}
 
 }

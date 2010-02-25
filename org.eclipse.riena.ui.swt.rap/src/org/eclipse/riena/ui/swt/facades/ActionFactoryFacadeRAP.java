@@ -10,32 +10,20 @@
  *******************************************************************************/
 package org.eclipse.riena.ui.swt.facades;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 
 /**
- * Implements {@link DialogConstantFacade} for RAP. Provides access to common
- * Dialog-Button labels.
+ * Implements {@link ActionFactoryFacade} for RAP.
  */
-public final class DialogConstantsFacadeImpl extends DialogConstantsFacade {
+public final class ActionFactoryFacadeRAP extends ActionFactoryFacade {
 
+	/**
+	 * Always returns null.
+	 */
 	@Override
-	public String getOkLabel() {
-		return IDialogConstants.get().OK_LABEL;
-	}
-
-	@Override
-	public String getCancelLabel() {
-		return IDialogConstants.get().CANCEL_LABEL;
-	}
-
-	@Override
-	public String getYesLabel() {
-		return IDialogConstants.get().YES_LABEL;
-	}
-
-	@Override
-	public String getNoLabel() {
-		return IDialogConstants.get().NO_LABEL;
+	public IWorkbenchAction createAboutAction(IWorkbenchWindow window) {
+		return null;
 	}
 
 }

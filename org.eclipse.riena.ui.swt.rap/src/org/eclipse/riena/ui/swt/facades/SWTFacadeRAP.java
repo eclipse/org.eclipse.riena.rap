@@ -20,9 +20,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
 /**
- * TODO [ev] docs
+ * Implements {@link SWTFacade} for RAP.
  */
-public final class SWTFacadeImpl extends SWTFacade {
+public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
 	public void addEraseItemListener(Table table, Listener listener) {

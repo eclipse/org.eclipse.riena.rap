@@ -8,19 +8,34 @@
  * Contributors:
  *    compeople AG - initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.riena.ui.swt.facades;
 
-import org.eclipse.swt.graphics.GC;
+import org.eclipse.jface.dialogs.IDialogConstants;
 
 /**
- * Implements {@link GCFacade} for RAP.
+ * Implements {@link DialogConstantFacade} for RAP. Provides access to common
+ * Dialog-Button labels.
  */
-public class GCFacadeImpl extends GCFacade {
+public final class DialogConstantsFacadeRAP extends DialogConstantsFacade {
 
 	@Override
-	public void drawRoundRectangle(GC gc, int x, int y, int width, int height, int arcWidth, int arcHeight) {
-		// do nothing
+	public String getOkLabel() {
+		return IDialogConstants.get().OK_LABEL;
+	}
+
+	@Override
+	public String getCancelLabel() {
+		return IDialogConstants.get().CANCEL_LABEL;
+	}
+
+	@Override
+	public String getYesLabel() {
+		return IDialogConstants.get().YES_LABEL;
+	}
+
+	@Override
+	public String getNoLabel() {
+		return IDialogConstants.get().NO_LABEL;
 	}
 
 }
