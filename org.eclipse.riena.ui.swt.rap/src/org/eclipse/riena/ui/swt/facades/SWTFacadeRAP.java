@@ -85,7 +85,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public void setDigits(Spinner control, int digits) {
+	public void setDigits(Spinner spinner, int digits) {
 		throw new UnsupportedOperationException("Spinner.setDigits(...) is not available");
 	}
 
