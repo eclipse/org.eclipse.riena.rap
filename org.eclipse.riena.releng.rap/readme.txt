@@ -8,7 +8,7 @@ Getting started with Riena on RAP
 2. Use RAP 1.3 M6 or later as your target.
    http://eclipse.org/rap/downloads/
 
-3. Import Riena and additional Equinox code into your workspace using
+3. Import Riena (HEAD) and additional Equinox code into your workspace using
    riena_on_rap.psf
    
 (Ignore compiler errors. Currently only mRiena ridget's are supported)
