@@ -15,7 +15,6 @@ import java.util.EventListener;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
@@ -31,6 +30,11 @@ public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
 	public void addEraseItemListener(Tree tree, Listener listener) {
+		// do nothing
+	}
+
+	@Override
+	public void addMouseMoveListener(Control control, EventListener listener) {
 		// do nothing
 	}
 
@@ -70,6 +74,11 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
+	public void removeMouseMoveListener(Control control, EventListener listener) {
+		// do nothing
+	}
+
+	@Override
 	public void removeMouseTrackListener(Control control, MouseTrackListener listener) {
 		// do nothing
 	}
@@ -82,11 +91,6 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public void removePaintListener(Control control, EventListener listener) {
 		// do nothing
-	}
-
-	@Override
-	public void setDigits(Spinner spinner, int digits) {
-		throw new UnsupportedOperationException("Spinner.setDigits(...) is not available");
 	}
 
 }
