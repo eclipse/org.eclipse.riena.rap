@@ -34,7 +34,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public void addMouseMoveListener(Control control, EventListener listener) {
+	public void addMouseMoveListener(Control control, Object listener) {
 		// do nothing
 	}
 
@@ -74,7 +74,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public void removeMouseMoveListener(Control control, EventListener listener) {
+	public void removeMouseMoveListener(Control control, Object listener) {
 		// do nothing
 	}
 
