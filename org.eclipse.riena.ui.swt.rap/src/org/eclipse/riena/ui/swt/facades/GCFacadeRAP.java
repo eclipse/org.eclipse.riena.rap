@@ -19,13 +19,13 @@ import org.eclipse.swt.graphics.GC;
 public class GCFacadeRAP extends GCFacade {
 
 	@Override
-	public void drawLine(GC gc, int x1, int y1, int x2, int y2) {
-		// do nothing
+	public void drawRoundRectangle(GC gc, int x, int y, int width, int height, int arcWidth, int arcHeight) {
+		gc.drawRoundRectangle(x, y, width, height, arcWidth, arcHeight);
 	}
 
 	@Override
-	public void drawRoundRectangle(GC gc, int x, int y, int width, int height, int arcWidth, int arcHeight) {
-		// do nothing
+	public void drawLine(GC gc, int x1, int y1, int x2, int y2) {
+		gc.drawLine(x1, y1, x2, y2);
 	}
 
 	@Override
