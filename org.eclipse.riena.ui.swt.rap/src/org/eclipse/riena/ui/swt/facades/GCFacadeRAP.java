@@ -11,7 +11,9 @@
 
 package org.eclipse.riena.ui.swt.facades;
 
+import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * Implements {@link GCFacade} for RAP.
@@ -26,6 +28,12 @@ public class GCFacadeRAP extends GCFacade {
 	@Override
 	public void drawLine(GC gc, int x1, int y1, int x2, int y2) {
 		gc.drawLine(x1, y1, x2, y2);
+	}
+
+	@Override
+	public int getAdvanceWidth(GC gc, char ch) {
+		Point extent = Graphics.textExtent(gc.getFont(), String.valueOf(ch), 0);
+		return extent.x;
 	}
 
 	@Override

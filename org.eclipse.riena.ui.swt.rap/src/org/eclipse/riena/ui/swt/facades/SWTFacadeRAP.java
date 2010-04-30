@@ -13,8 +13,11 @@ package org.eclipse.riena.ui.swt.facades;
 import java.util.EventListener;
 
 import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
@@ -60,13 +63,23 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
+	public Cursor createCursor(Display display, Image cursorImage, int alternateStyle) {
+		return new Cursor(display, alternateStyle);
+	}
+
+	@Override
 	public Listener createTreeItemEraserAndPainter() {
 		return null;
 	}
 
 	@Override
 	public Control getCursorControl(Display display) {
-		return null;
+		return display.getCursorControl();
+	}
+
+	@Override
+	public boolean postEvent(Display display, Event event) {
+		return false;
 	}
 
 	@Override
