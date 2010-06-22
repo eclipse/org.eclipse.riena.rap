@@ -22,17 +22,18 @@ import org.eclipse.ui.keys.IBindingService;
 public final class BindingServiceFacadeRAP extends BindingServiceFacade {
 
 	@Override
-	public Binding[] getBindings(IBindingService service) {
+	public Binding[] getBindings(final IBindingService service) {
 		return null;
 	}
 
 	@Override
-	public Scheme getScheme(IBindingService service, String schemeId) {
+	public Scheme getScheme(final IBindingService service, final String schemeId) {
 		return null;
 	}
 
 	@Override
-	public void savePreferences(IBindingService service, Scheme scheme, Binding[] bindings) throws IOException {
+	public void savePreferences(final IBindingService service, final Scheme scheme, final Binding[] bindings)
+			throws IOException {
 		// do nothing
 	}
 
