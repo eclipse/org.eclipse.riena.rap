@@ -9,9 +9,14 @@ Getting started with Riena on RAP
    http://eclipse.org/rap/downloads/
 
 3. Import Riena (HEAD) and additional Equinox code into your workspace using
-   riena_on_rap.psf
+   riena_on_rap.psf which is found in the org.eclipse.riena.releng.rap project.
    
-(Ignore compiler errors. Currently only mRiena ridget's are supported)
+   User: anonymous
+   Password: <blank> 
+   
+   (CVS via pserver may not work if you are behind a corporate proxy / firewall)
+   
+4. Ignore compiler errors. Currently only some of Riena ridget's are supported.
 
-4. Launch 'RAP Mail Sample (RCP UI)' in 
+5. Launch 'RAP Mail Sample (RCP UI)' in 
    org.eclipse.riena.sample.app.client.rcpmail
