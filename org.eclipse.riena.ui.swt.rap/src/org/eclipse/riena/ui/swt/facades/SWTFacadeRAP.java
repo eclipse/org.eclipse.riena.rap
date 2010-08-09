@@ -12,6 +12,8 @@ package org.eclipse.riena.ui.swt.facades;
 
 import java.util.EventListener;
 
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Image;
@@ -22,39 +24,61 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
+import org.eclipse.riena.ui.swt.ModuleTitleBar;
+
 /**
  * Implements {@link SWTFacade} for RAP.
  */
 public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
-	public void addEraseItemListener(Table table, Listener listener) {
+	public void addEraseItemListener(final Table table, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void addEraseItemListener(Tree tree, Listener listener) {
+	public void addEraseItemListener(final Tree tree, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void addMouseMoveListener(Control control, Object listener) {
+	public void addFilterMouseExit(final Display display, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void addMouseTrackListener(Control control, MouseTrackListener listener) {
+	public void addFilterMouseMove(final Display display, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void addPaintItemListener(Tree tree, Listener listener) {
+	public void addFilterMouseWheel(final Display display, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void addPaintListener(Control control, EventListener listener) {
+	public void addMouseMoveListener(final Control control, final MouseMoveListener listener) {
 		// do nothing
+	}
+
+	@Override
+	public void addMouseTrackListener(final Control control, final MouseTrackListener listener) {
+		// do nothing
+	}
+
+	@Override
+	public void addPaintItemListener(final Tree tree, final Listener listener) {
+		// do nothing
+	}
+
+	@Override
+	public void addPaintListener(final Control control, final EventListener listener) {
+		// do nothing
+	}
+
+	@Override
+	public Cursor createCursor(final Display display, final Image cursorImage, final int alternateStyle) {
+		return new Cursor(display, alternateStyle);
 	}
 
 	@Override
@@ -63,8 +87,13 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public Cursor createCursor(Display display, Image cursorImage, int alternateStyle) {
-		return new Cursor(display, alternateStyle);
+	public void createModuleToolTip(final ModuleTitleBar parent) {
+		// do nothing
+	}
+
+	@Override
+	public void createSubModuleToolTip(final Tree parent, final ILabelProvider labelProvider) {
+		// do nothing
 	}
 
 	@Override
@@ -73,42 +102,47 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public Control getCursorControl(Display display) {
+	public Control getCursorControl(final Display display) {
 		return display.getCursorControl();
 	}
 
 	@Override
-	public boolean postEvent(Display display, Event event) {
+	public boolean postEvent(final Display display, final Event event) {
 		return false;
 	}
 
 	@Override
-	public void removeEraseItemListener(Table table, Listener listener) {
+	public void removeEraseItemListener(final Table table, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void removeEraseItemListener(Tree tree, Listener listener) {
+	public void removeEraseItemListener(final Tree tree, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void removeMouseMoveListener(Control control, Object listener) {
+	public void removeFilterMouseWheel(final Display display, final Listener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void removeMouseTrackListener(Control control, MouseTrackListener listener) {
+	public void removeMouseMoveListener(final Control control, final Object listener) {
 		// do nothing
 	}
 
 	@Override
-	public void removePaintItemListener(Tree tree, Listener listener) {
+	public void removeMouseTrackListener(final Control control, final MouseTrackListener listener) {
 		// do nothing
 	}
 
 	@Override
-	public void removePaintListener(Control control, EventListener listener) {
+	public void removePaintItemListener(final Tree tree, final Listener listener) {
+		// do nothing
+	}
+
+	@Override
+	public void removePaintListener(final Control control, final EventListener listener) {
 		// do nothing
 	}
 
