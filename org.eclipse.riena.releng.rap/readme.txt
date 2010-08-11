@@ -9,7 +9,8 @@ Getting started with Riena on RAP
    http://eclipse.org/rap/downloads/
 
 3. Import Riena (HEAD) and additional Equinox code into your workspace using
-   riena_on_rap.psf which is found in the org.eclipse.riena.releng.rap project.
+   riena_on_rap-pserver.psf which is found in the org.eclipse.riena.releng.rap 
+   project. (use riena_on_rap-ssh2.psf is you are a committer)
    
    User: anonymous
    Password: <blank> 
