@@ -82,7 +82,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public void createDialogGrabCornerListenerWithTracker(final Control control) {
+	public void createGrabCornerListenerWithTracker(final Control control) {
 		// do nothing
 	}
 
