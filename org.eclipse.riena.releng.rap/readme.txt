@@ -1,11 +1,9 @@
 Getting started with Riena on RAP 
 
-(experimental)
-
 1. Install the RAP tooling into your SDK
    http://eclipse.org/rap/downloads/
    
-2. Use RAP 1.3 M6 or later as your target.
+2. Use RAP 1.4 M2 or later as your target.
    http://eclipse.org/rap/downloads/
 
 3. Import Riena (HEAD) and additional Equinox code into your workspace using
@@ -17,7 +15,10 @@ Getting started with Riena on RAP
    
    (CVS via pserver may not work if you are behind a corporate proxy / firewall)
    
-4. Ignore compiler errors. Currently only some of Riena ridget's are supported.
+4. There should be no compiler errors at this point.
 
 5. Launch 'RAP Mail Sample (RCP UI)' in 
    org.eclipse.riena.sample.app.client.rcpmail
+   
+6. Launch some of the other 'RAP .....launch' configurations in the other 
+   examples.
