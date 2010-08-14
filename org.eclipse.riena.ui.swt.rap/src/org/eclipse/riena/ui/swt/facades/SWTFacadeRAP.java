@@ -17,6 +17,7 @@ import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -24,7 +25,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
+import org.eclipse.riena.ui.swt.CompletionCombo;
 import org.eclipse.riena.ui.swt.ModuleTitleBar;
+import org.eclipse.riena.ui.swt.facades.internal.CompletionComboRAP;
+import org.eclipse.riena.ui.swt.facades.internal.CompletionComboWithImageRAP;
 
 /**
  * Implements {@link SWTFacade} for RAP.
@@ -74,6 +78,20 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public void addPaintListener(final Control control, final EventListener listener) {
 		// do nothing
+	}
+
+	@Override
+	public void copyEventKeyLocation(final Event source, final Event target) {
+	}
+
+	@Override
+	public CompletionCombo createCompletionCombo(final Composite parent, final int style) {
+		return new CompletionComboRAP(parent, style);
+	}
+
+	@Override
+	public CompletionCombo createCompletionComboWithImage(final Composite parent, final int style) {
+		return new CompletionComboWithImageRAP(parent, style);
 	}
 
 	@Override
@@ -149,6 +167,11 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public void removePaintListener(final Control control, final EventListener listener) {
 		// do nothing
+	}
+
+	@Override
+	public boolean traverse(final Control control, final int traversal) {
+		return false;
 	}
 
 }
