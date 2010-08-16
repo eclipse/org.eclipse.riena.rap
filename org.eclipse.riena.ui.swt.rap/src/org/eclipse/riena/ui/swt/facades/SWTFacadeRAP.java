@@ -26,9 +26,11 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
 import org.eclipse.riena.ui.swt.CompletionCombo;
+import org.eclipse.riena.ui.swt.InfoFlyout;
 import org.eclipse.riena.ui.swt.ModuleTitleBar;
 import org.eclipse.riena.ui.swt.facades.internal.CompletionComboRAP;
 import org.eclipse.riena.ui.swt.facades.internal.CompletionComboWithImageRAP;
+import org.eclipse.riena.ui.swt.facades.internal.InfoFlyoutRAP;
 
 /**
  * Implements {@link SWTFacade} for RAP.
@@ -100,13 +102,18 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
+	public EventListener createDisabledPainter() {
+		return null;
+	}
+
+	@Override
 	public void createGrabCornerListenerWithTracker(final Control control) {
 		// do nothing
 	}
 
 	@Override
-	public EventListener createDisabledPainter() {
-		return null;
+	public InfoFlyout createInfoFlyout(final Composite parent) {
+		return new InfoFlyoutRAP(parent);
 	}
 
 	@Override
