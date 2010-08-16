@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension-point id="org.eclipse.ui.bindings" name="Bindings - Dummy EP provided by Riena" schema="schema/org.eclipse.ui.bindings.exsd"/>
+   <extension-point id="org.eclipse.ui.splashHandlers" name="Splash Handlers - dummy provided by Riena" schema="schema/org.eclipse.ui.splashHandlers.exsd"/>
+
+</fragment>
