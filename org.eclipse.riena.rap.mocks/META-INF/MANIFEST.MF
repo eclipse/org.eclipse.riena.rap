@@ -2,6 +2,6 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse UI Fragment with RAP Mocks
 Bundle-SymbolicName: org.eclipse.riena.rap.mocks;singleton:=true
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Fragment-Host: org.eclipse.rap.ui;bundle-version="1.4.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
