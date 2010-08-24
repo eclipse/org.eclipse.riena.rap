@@ -13,7 +13,11 @@ package org.eclipse.riena.ui.swt.facades;
 
 import org.eclipse.rwt.graphics.Graphics;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Implements {@link GCFacade} for RAP.
@@ -50,6 +54,18 @@ public class GCFacadeRAP extends GCFacade {
 	@Override
 	public void setLineDash(final GC gc, final int[] dashes) {
 		// do nothing
+	}
+
+	@Override
+	public GC createGCFromImage(final Image img) {
+		return new GC(Display.getCurrent());
+	}
+
+	@Override
+	public Image createImage(final Display display, final int width, final int height) {
+		final ImageData data = new ImageData(width, height, 24, new PaletteData(0xFF, 0xFF00, 0xFF0000));
+		final Image img = new Image(display, data);
+		return img;
 	}
 
 }
