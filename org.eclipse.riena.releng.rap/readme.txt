@@ -1,7 +1,7 @@
 Getting started with Riena on RAP 
 
 1. Install the RAP tooling into your SDK
-   http://eclipse.org/rap/downloads/
+   http://download.eclipse.org/rt/rap/1.3/tooling
    
 2. Use RAP 1.4 M2 or later as your target.
    http://eclipse.org/rap/downloads/
