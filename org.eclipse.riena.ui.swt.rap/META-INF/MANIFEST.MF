@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.riena.core,
  org.eclipse.riena.ui.common,
  org.eclipse.riena.ui.ridgets,
  org.eclipse.riena.ui.swt,
+ org.eclipse.riena.navigation.ui.swt,
  org.eclipse.rap.rwt;resolution:=optional;visibility:=reexport,
  org.eclipse.rap.ui.workbench;resolution:=optional;visibility:=reexport 
 Bundle-Activator: org.eclipse.riena.internalui.swt.rap.Activator
