@@ -17,8 +17,14 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 
+import org.eclipse.riena.ui.swt.CompletionCombo;
+
 /**
- * TODO [ev] docs
+ * A {@link CompletionCombo} with a text field and a list widget.
+ * <p>
+ * <b>Important:</b> this is the RAP-specific implementation of this widget. Use
+ * {@code UIControlsFactory.createCompletionCombo(...)} to automatically get the
+ * correct platform-specific (RCP or RAP) instance.
  */
 public class CompletionComboRAP extends AbstractCompletionComboRAP {
 

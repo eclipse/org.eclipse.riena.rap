@@ -22,7 +22,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.riena.ui.swt.CompletionCombo;
 
 /**
- * TODO [ev] docs
+ * RAP specific implementation of a {@link CompletionCombo}. There are two
+ * concrete subclasses:
+ * <ul>
+ * <li>CompletionComboRAP &ndash; a CompletionCombo with a text field and a list
+ * widget</li>
+ * <li>CompletionComboWithImageRAP &ndash; a CompletionCombo with a text field,
+ * with an optional image on the left, and a table widget (which can show an
+ * image next to each item)</li>
+ * </ul>
  */
 abstract class AbstractCompletionComboRAP extends CompletionCombo {
 
