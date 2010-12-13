@@ -189,20 +189,6 @@ v1.0
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.riena.communication.discovery"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.riena.communication.discovery.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.riena.communication.factory.hessian"
          download-size="0"
          install-size="0"
