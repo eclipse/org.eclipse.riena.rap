@@ -13,8 +13,13 @@ package org.eclipse.riena.ui.swt.facades;
 import java.util.EventListener;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.events.VerifyEvent;
+import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -138,11 +143,6 @@ public final class SWTFacadeRAP extends SWTFacade {
 	}
 
 	@Override
-	public Control getCursorControl(final Display display) {
-		return display.getCursorControl();
-	}
-
-	@Override
 	public boolean postEvent(final Display display, final Event event) {
 		return false;
 	}
@@ -185,6 +185,67 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public boolean traverse(final Control control, final int traversal) {
 		return false;
+	}
+
+	// protected methods
+	////////////////////
+
+	@Override
+	protected void addModifyListeners(final Control control, final Object[] listeners) {
+		for (final Object listener : listeners) {
+			if (listener instanceof ModifyListener) {
+				ModifyEvent.addListener(control, (ModifyListener) listener);
+			} else if (listener instanceof Listener) {
+				control.addListener(SWT.Modify, (Listener) listener);
+			} else {
+				throw new IllegalArgumentException("unsupported listener type: " + listener); //$NON-NLS-1$
+			}
+		}
+	}
+
+	@Override
+	protected void addVerifyListeners(final Control control, final Object[] listeners) {
+		for (final Object listener : listeners) {
+			if (listener instanceof VerifyListener) {
+				VerifyEvent.addListener(control, (VerifyListener) listener);
+			} else if (listener instanceof Listener) {
+				control.addListener(SWT.Verify, (Listener) listener);
+			} else {
+				throw new IllegalArgumentException("unsupported listener type: " + listener); //$NON-NLS-1$
+			}
+		}
+	}
+
+	@Override
+	protected Object[] removeModifyListeners(final Control control) {
+		final Object[] typedListeners = ModifyEvent.getListeners(control);
+		for (final Object listener : typedListeners) {
+			ModifyEvent.removeListener(control, (ModifyListener) listener);
+		}
+		final Object[] untypedListeners = control.getListeners(SWT.Modify);
+		for (final Object listener : untypedListeners) {
+			control.removeListener(SWT.Modify, (Listener) listener);
+		}
+		final Object[] result = new Object[typedListeners.length + untypedListeners.length];
+		System.arraycopy(typedListeners, 0, result, 0, typedListeners.length);
+		System.arraycopy(untypedListeners, 0, result, typedListeners.length, untypedListeners.length);
+		return result;
+	}
+
+	@Override
+	protected Object[] removeVerifyListeners(final Control control) {
+		final Object[] typedListeners = VerifyEvent.getListeners(control);
+		for (final Object listener : typedListeners) {
+			VerifyEvent.removeListener(control, (VerifyListener) listener);
+		}
+		final Object[] untypedListeners = control.getListeners(SWT.Verify);
+		for (final Object listener : untypedListeners) {
+			control.removeListener(SWT.Verify, (Listener) listener);
+		}
+		final Object[] result = new Object[typedListeners.length + untypedListeners.length];
+		System.arraycopy(typedListeners, 0, result, 0, typedListeners.length);
+		System.arraycopy(untypedListeners, 0, result, typedListeners.length, untypedListeners.length);
+		return result;
 	}
 
 }
