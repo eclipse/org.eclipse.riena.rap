@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 
@@ -185,6 +186,17 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public boolean traverse(final Control control, final int traversal) {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * The RAP Implementation of {@link ScrollBar} doesn't support the property
+	 * {@code increment}, because of that this implementation do nothing.
+	 */
+	@Override
+	public void setIncrement(final ScrollBar scrollBar, final int value) {
+		// do nothing
 	}
 
 	// protected methods
