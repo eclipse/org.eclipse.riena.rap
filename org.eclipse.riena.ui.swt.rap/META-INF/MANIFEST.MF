@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.riena.core,
  org.eclipse.rap.ui.workbench;resolution:=optional;visibility:=reexport 
 Bundle-Activator: org.eclipse.riena.internalui.swt.rap.Activator
 Eclipse-RegisterBuddy: org.eclipse.riena.ui.swt
+Bundle-ActivationPolicy: lazy

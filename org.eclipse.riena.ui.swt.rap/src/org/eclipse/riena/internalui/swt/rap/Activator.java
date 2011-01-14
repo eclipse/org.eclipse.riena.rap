@@ -15,13 +15,18 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.framework.BundleContext;
 
+import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.rap.ui.internal.progress.JobManagerAdapter;
+import org.eclipse.rwt.internal.lifecycle.FakeContextUtil;
 import org.eclipse.rwt.internal.lifecycle.RWTLifeCycle;
-import org.eclipse.rwt.internal.lifecycle.UICallBackServiceHandler;
 import org.eclipse.rwt.internal.service.ContextProvider;
+import org.eclipse.rwt.internal.service.ServiceContext;
+import org.eclipse.rwt.lifecycle.UICallBack;
+import org.eclipse.rwt.service.ISessionStore;
+import org.eclipse.swt.internal.widgets.IDisplayAdapter;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.progress.UIJob;
 
@@ -77,18 +82,39 @@ public class Activator extends AbstractRienaUIPlugin {
 		return plugin;
 	}
 
+	@SuppressWarnings("restriction")
 	private final static class UICallbackActivationListener extends JobChangeAdapter {
+		private static final String SERVICE_CONTEXT = "serviceContext"; //$NON-NLS-1$
+		private static final String RAP = "context"; //$NON-NLS-1$
 		private final Map<Job, Display> job2Display = new ConcurrentHashMap<Job, Display>();
+
+		@Override
+		public void aboutToRun(final IJobChangeEvent event) {
+			final ServiceContext context = (ServiceContext) event.getJob().getProperty(
+					new QualifiedName(RAP, SERVICE_CONTEXT));
+			if (context != null) {
+				//				ContextProvider.setContext(null);
+				ContextProvider.setContext(context);
+			}
+		}
 
 		@Override
 		public void scheduled(final IJobChangeEvent event) {
 			final Display display = findDisplay(event.getJob());
 			if (display != null && !display.isDisposed()) {
+				final ServiceContext context = ContextProvider.getContext();
+				if (context != null) {
+					final Display sessionDisplay = RWTLifeCycle.getSessionDisplay();
+					final IDisplayAdapter adapter = (IDisplayAdapter) sessionDisplay.getAdapter(IDisplayAdapter.class);
+					final ISessionStore session = adapter.getSession();
+					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
+					event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), fakeContext);
+				}
 				job2Display.put(event.getJob(), display);
 				display.asyncExec(new Runnable() {
 					public void run() {
 						final String id = String.valueOf(event.getJob().hashCode());
-						UICallBackServiceHandler.activateUICallBacksFor(id);
+						UICallBack.activate(id);
 					}
 				});
 			}
@@ -103,7 +129,7 @@ public class Activator extends AbstractRienaUIPlugin {
 						public void run() {
 							final Job job = event.getJob();
 							final String id = String.valueOf(job.hashCode());
-							UICallBackServiceHandler.deactivateUICallBacksFor(id);
+							UICallBack.deactivate(id);
 						}
 					});
 				} finally {
