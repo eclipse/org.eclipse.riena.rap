@@ -93,7 +93,7 @@ public class Activator extends AbstractRienaUIPlugin {
 			final ServiceContext context = (ServiceContext) event.getJob().getProperty(
 					new QualifiedName(RAP, SERVICE_CONTEXT));
 			if (context != null) {
-				//				ContextProvider.setContext(null);
+
 				ContextProvider.setContext(context);
 			}
 		}
@@ -135,6 +135,7 @@ public class Activator extends AbstractRienaUIPlugin {
 				} finally {
 					job2Display.remove(event.getJob());
 				}
+				ContextProvider.releaseContextHolder();
 			}
 		}
 
