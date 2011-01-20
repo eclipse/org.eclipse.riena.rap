@@ -13,6 +13,7 @@ package org.eclipse.riena.ui.swt.facades;
 import java.util.EventListener;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.rwt.internal.lifecycle.UICallBackServiceHandler;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -197,6 +198,16 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public void setIncrement(final ScrollBar scrollBar, final int value) {
 		// do nothing
+	}
+
+	@Override
+	public void beforeInfoFlyoutShow(final InfoFlyout flyout) {
+		UICallBackServiceHandler.activateUICallBacksFor(flyout.getPropertyName());
+	}
+
+	@Override
+	public void afterInfoFlyoutShow(final InfoFlyout flyout) {
+		UICallBackServiceHandler.deactivateUICallBacksFor(flyout.getPropertyName());
 	}
 
 	// protected methods
