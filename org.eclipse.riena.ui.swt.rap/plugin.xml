@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+		point="org.eclipse.riena.ui.swt.defaultLnf">
+  		<lnf class="org.eclipse.riena.ui.swt.lnf.rap.RAPLnf" />
+   </extension>
+   <extension
+		point="org.eclipse.riena.ui.swt.lnfMarkerSupport">
+		<markerSupport
+			class="org.eclipse.riena.ui.swt.lnf.rap.RAPMarkerSupport"
+			id="rapMarkerSupport">
+		</markerSupport>
+   </extension>
+   <extension
+		point="org.eclipse.rap.ui.themes">
+		<themeContribution
+			themeId="org.eclipse.rap.rwt.theme.Default"
+			file="theme1/ror-extensions.css" />
+  </extension>
+
+</plugin>

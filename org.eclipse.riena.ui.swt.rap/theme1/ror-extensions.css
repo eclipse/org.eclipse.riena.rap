@@ -1,0 +1,10 @@
+/* Riena on RAP marker styles */
+
+Combo, CCombo {
+	background-color: rgb(231, 233, 0);
+}
+
+/* Error Marker */
+Button.Emo, Combo.Emo, CCombo.Emo, Composite.Emo, DateTime.Emo, List.Emo, Table.Emo, Text.Emo, Tree.Emo  {
+	border: 2px solid red;
+}
