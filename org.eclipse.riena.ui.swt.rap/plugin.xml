@@ -5,13 +5,13 @@
 		point="org.eclipse.riena.ui.swt.defaultLnf">
   		<lnf class="org.eclipse.riena.ui.swt.lnf.rap.RAPLnf" />
    </extension>
-   <extension
+   <!--extension
 		point="org.eclipse.riena.ui.swt.lnfMarkerSupport">
 		<markerSupport
 			class="org.eclipse.riena.ui.swt.lnf.rap.RAPMarkerSupport"
 			id="rapMarkerSupport">
 		</markerSupport>
-   </extension>
+   </extension-->
    <extension
 		point="org.eclipse.rap.ui.themes">
 		<themeContribution

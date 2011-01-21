@@ -23,7 +23,7 @@ import org.eclipse.riena.ui.ridgets.swt.MarkerSupport;
  * Helper class for SWT Ridgets under RAP to delegate their marker issues to.
  * The markers are visiualised throu CSS.
  */
-public class RAPMarkerSupport extends MarkerSupport {
+public class CopyOfRAPMarkerSupport extends MarkerSupport {
 	private static final long FLASH_DURATION_MS = 300;
 	private boolean isFlashInProgress = false;
 	private IControlDecoration errorDecoration;
