@@ -1,17 +1,9 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2010 compeople AG and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    compeople AG - initial API and implementation
+ * Copyright (c) 2007, 2010 compeople AG and others. All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
+ * available at http://www.eclipse.org/legal/epl-v10.html Contributors: compeople AG - initial API and implementation
  *******************************************************************************/
 package org.eclipse.riena.internalui.swt.rap;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.framework.BundleContext;
 
@@ -53,7 +45,7 @@ public class Activator extends AbstractRienaUIPlugin {
 		registerJobChangeListener();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("restriction")
 	private void removeRAPJobChangeListener() {
 		Job.getJobManager().removeJobChangeListener(JobManagerAdapter.getInstance());
 	}
@@ -86,16 +78,24 @@ public class Activator extends AbstractRienaUIPlugin {
 	private final static class UICallbackActivationListener extends JobChangeAdapter {
 		private static final String SERVICE_CONTEXT = "serviceContext"; //$NON-NLS-1$
 		private static final String RAP = "context"; //$NON-NLS-1$
-		private final Map<Job, Display> job2Display = new ConcurrentHashMap<Job, Display>();
+		private static final String THREAD = "currentThread"; //$NON-NLS-1$
 
 		@Override
 		public void aboutToRun(final IJobChangeEvent event) {
 			final ServiceContext context = (ServiceContext) event.getJob().getProperty(
 					new QualifiedName(RAP, SERVICE_CONTEXT));
-			if (context != null) {
 
-				ContextProvider.setContext(context);
+			if (context != null) {
+				final Thread scheduler = (Thread) event.getJob().getProperty(new QualifiedName(RAP, THREAD));
+				if (scheduler != null && scheduler != Thread.currentThread()) {
+					ContextProvider.setContext(context);
+				}
 			}
+
+			event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), null);
+			event.getJob().setProperty(new QualifiedName(RAP, THREAD), null);
+
+			RWTLifeCycle.getSessionDisplay();
 		}
 
 		@Override
@@ -109,8 +109,9 @@ public class Activator extends AbstractRienaUIPlugin {
 					final ISessionStore session = adapter.getSession();
 					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
 					event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), fakeContext);
+					event.getJob().setProperty(new QualifiedName(RAP, THREAD), Thread.currentThread());
+
 				}
-				job2Display.put(event.getJob(), display);
 				display.asyncExec(new Runnable() {
 					public void run() {
 						final String id = String.valueOf(event.getJob().hashCode());
@@ -122,7 +123,7 @@ public class Activator extends AbstractRienaUIPlugin {
 
 		@Override
 		public void done(final IJobChangeEvent event) {
-			final Display display = job2Display.get(event.getJob());
+			final Display display = RWTLifeCycle.getSessionDisplay();
 			if (display != null && !display.isDisposed()) {
 				try {
 					display.asyncExec(new Runnable() {
@@ -132,8 +133,8 @@ public class Activator extends AbstractRienaUIPlugin {
 							UICallBack.deactivate(id);
 						}
 					});
-				} finally {
-					job2Display.remove(event.getJob());
+				} catch (final Throwable t) {
+
 				}
 				ContextProvider.releaseContextHolder();
 			}
@@ -148,8 +149,8 @@ public class Activator extends AbstractRienaUIPlugin {
 					final UIJob uiJob = (UIJob) job;
 					result = uiJob.getDisplay();
 					if (result == null) {
-						final String msg = "UIJob " + uiJob.getName()
-								+ " cannot be scheduled without an associated display.";
+						final String msg = "UIJob " + uiJob.getName() //$NON-NLS-1$
+								+ " cannot be scheduled without an associated display."; //$NON-NLS-1$
 						throw new IllegalStateException(msg);
 					}
 				}
