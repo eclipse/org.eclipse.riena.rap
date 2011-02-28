@@ -98,6 +98,11 @@ public class CompletionComboWithImageRAP extends AbstractCompletionComboRAP {
 	}
 
 	@Override
+	protected int getTopIndex(final Control list) {
+		return ((Table) list).getTopIndex();
+	}
+
+	@Override
 	protected int indexOf(final Control list, final String string, final int start) {
 		final Table table = (Table) list;
 		final int max = table.getItemCount();
