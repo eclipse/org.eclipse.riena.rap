@@ -37,7 +37,12 @@ public class ModuleNavigationListenerRAP extends ModuleNavigationListener {
 
 		NodeSwitcherRAP(final Display display, final INavigationNode<?> node) {
 			super(display, node);
-			id = node.getNodeId().getInstanceId();
+			final String instanceId = node.getNodeId().getInstanceId();
+			if (instanceId != null) {
+				id = instanceId;
+			} else {
+				id = String.format("%s%d", node.getNodeId().toString(), System.currentTimeMillis()); //$NON-NLS-1$
+			}
 		}
 
 		@Override
