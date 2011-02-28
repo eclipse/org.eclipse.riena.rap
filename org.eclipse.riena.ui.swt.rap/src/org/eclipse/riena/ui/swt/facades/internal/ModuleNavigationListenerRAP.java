@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.riena.ui.swt.facades.internal;
 
-import org.eclipse.rwt.internal.lifecycle.UICallBackServiceHandler;
+import org.eclipse.rwt.lifecycle.UICallBack;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -43,7 +43,7 @@ public class ModuleNavigationListenerRAP extends ModuleNavigationListener {
 		@Override
 		public synchronized void start() {
 			// the callback must be activated from the UIThread not from this thread
-			UICallBackServiceHandler.activateUICallBacksFor(id);
+			UICallBack.activate(id);
 			super.start();
 		}
 
@@ -54,7 +54,7 @@ public class ModuleNavigationListenerRAP extends ModuleNavigationListener {
 			} finally {
 				display.syncExec(new Runnable() {
 					public void run() {
-						UICallBackServiceHandler.deactivateUICallBacksFor(id);
+						UICallBack.deactivate(id);
 					}
 				});
 			}
