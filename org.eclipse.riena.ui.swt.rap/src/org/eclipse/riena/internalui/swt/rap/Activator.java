@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.rap.ui.internal.progress.JobManagerAdapter;
 import org.eclipse.rwt.internal.lifecycle.FakeContextUtil;
-import org.eclipse.rwt.internal.lifecycle.RWTLifeCycle;
+import org.eclipse.rwt.internal.lifecycle.LifeCycleUtil;
 import org.eclipse.rwt.internal.service.ContextProvider;
 import org.eclipse.rwt.internal.service.ServiceContext;
 import org.eclipse.rwt.lifecycle.UICallBack;
@@ -100,7 +100,7 @@ public class Activator extends AbstractRienaUIPlugin {
 			event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), null);
 			event.getJob().setProperty(new QualifiedName(RAP, THREAD), null);
 
-			RWTLifeCycle.getSessionDisplay();
+			LifeCycleUtil.getSessionDisplay();
 		}
 
 		@Override
@@ -109,7 +109,7 @@ public class Activator extends AbstractRienaUIPlugin {
 			if (display != null && !display.isDisposed()) {
 				final ServiceContext context = ContextProvider.getContext();
 				if (context != null) {
-					final Display sessionDisplay = RWTLifeCycle.getSessionDisplay();
+					final Display sessionDisplay = LifeCycleUtil.getSessionDisplay();
 					final IDisplayAdapter adapter = (IDisplayAdapter) sessionDisplay.getAdapter(IDisplayAdapter.class);
 					final ISessionStore session = adapter.getSession();
 					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
@@ -128,7 +128,7 @@ public class Activator extends AbstractRienaUIPlugin {
 
 		@Override
 		public void done(final IJobChangeEvent event) {
-			final Display display = RWTLifeCycle.getSessionDisplay();
+			final Display display = LifeCycleUtil.getSessionDisplay();
 			if (display != null && !display.isDisposed()) {
 				try {
 					display.asyncExec(new Runnable() {
@@ -148,7 +148,7 @@ public class Activator extends AbstractRienaUIPlugin {
 		private static Display findDisplay(final Job job) {
 			Display result = null;
 			if (ContextProvider.hasContext()) {
-				result = RWTLifeCycle.getSessionDisplay();
+				result = LifeCycleUtil.getSessionDisplay();
 			} else {
 				if (job instanceof UIJob) {
 					final UIJob uiJob = (UIJob) job;

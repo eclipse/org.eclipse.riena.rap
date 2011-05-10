@@ -11,7 +11,6 @@
 package org.eclipse.riena.ui.swt.facades.internal;
 
 import org.eclipse.rwt.lifecycle.UICallBack;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -29,14 +28,15 @@ public class ModuleNavigationListenerRAP extends ModuleNavigationListener {
 
 	@Override
 	protected NodeSwitcher createNodeSwitcher(final TreeItem item) {
-		return new NodeSwitcherRAP(item.getDisplay(), (INavigationNode<?>) item.getData());
+		return new NodeSwitcherRAP(item);
 	}
 
 	private final static class NodeSwitcherRAP extends ModuleNavigationListener.NodeSwitcher {
 		private final String id;
 
-		NodeSwitcherRAP(final Display display, final INavigationNode<?> node) {
-			super(display, node);
+		NodeSwitcherRAP(final TreeItem item) {
+			super(item);
+			final INavigationNode<?> node = (INavigationNode<?>) item.getData();
 			final String instanceId = node.getNodeId().getInstanceId();
 			if (instanceId != null) {
 				id = instanceId;
