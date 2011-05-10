@@ -1,0 +1,12 @@
+Button[PUSH], Button[TOGGLE] {
+    background-color: #ffcc00;
+    border-radius: 2px;
+    border: 1px solid #646464;
+}
+
+
+
+Text, Table, Tree, DateTime, Combo, CCombo, Spinner, List  {
+border: 1px solid #646464;
+border-radius: 2px;
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<style type="text/css">
+#header {
+	background: url(%URL%/header.jpg) top left no-repeat;
+	height: 94px;
+	position: relative;
+	width: 100%;
+	z-index: 5;
+	background-color: #e3e3e3;
+}
+
+html,body {
+	color: #9692c0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	background-color: #e3e3e3;
+}
+
+#logo {
+	border: 0;
+	float: left;
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+}
+
+#menu1-holder {
+	padding: 58px 0 0 0;
+	margin-left: 234px;
+}
+
+ul.menu,ul.menu ul {
+	list-style-type: none;
+}
+
+ul.menu a {
+	display: block;
+	padding: 0px 10px 0px 10px;
+	font-size: 12px;
+	color: #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+	background-color: #9692c0;
+}
+
+ul.menu a:hover {
+	text-decoration: none;
+	background-color: #d7d6e7;
+	color: #ffffff;
+}
+
+#current a {
+	color: #ffffff;
+	background-color: #646464;
+}
+
+#current a:hover {
+	color: #ffffff;
+	background-color: #606060;
+}
+
+#current ul a {
+	color: #ffffff;
+	background-color: #9692c0;
+}
+
+#current ul a:hover {
+	color: #222;
+	text-decoration: none;
+	background-color: #ffe680;
+}
+
+ul.menu ul a {
+	padding: 0 0 0 10px;
+	border-bottom: 1px solid #efbf00;
+}
+
+ul.menu li {
+	padding: 0;
+	float: left;
+	background-color: #9692c0;
+	line-height: 25px;
+	margin: 0 0 1px 1px;
+	display: inline;
+	border-right: 1px solid #ffffff;
+}
+
+ul.menu ul {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	background-color: #9692c0;
+	border: 1px solid #ffffff;
+	display: none;
+	min-width: 220px;
+}
+
+ul.menu ul li {
+	padding: 0;
+	background-color: #9692c0;
+	line-height: 25px;
+	margin: 0 0 1px 1px;
+	border: none;
+	display: inline;
+}
+
+* html ul.menu ul {
+	width: 220px;
+}
+
+ul.menu ul.hover,ul.menu li.hover ul,ul.menu li:hover ul {
+	display: block;
+}
+
+ul.menu ul li {
+	float: none;
+	display: block;
+	background-color: transparent; .nav { padding : 10px 1px 0 0;
+	list-style-type: none;
+	float: none;
+	position: absolute;
+	right: 0px;
+}
+
+.nav {
+    padding: 10px 1px 0 0;
+    list-style-type: none;
+    float: none;
+    position:absolute;
+    right: 0px;
+}
+
+.nav li {
+    display:inline;
+    float:left;
+    text-align: center;
+    line-height: 14px;
+    margin: 0 10px 0 0;
+}
+
+.nav a {
+    font-size: 11px;
+    color: #323232;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    font-size: 11px;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css"
+	href="%URL%/header_template_menu.css" />
+</head>
+<body>
+
+
+<div id="header">
+<div id="logo"><img src="%URL%/eclipse.png"
+	width="171" height="91" border="0"
+	alt="Eclipse logo"
+	title="Eclipse logo"></div>
+<a id="c29" class="sprungmarke"></a>
+<ul class="nav">
+	<li><a href="#" target="_self" class="internal-link"
+		onClick="activateSubApplication('0');return false;">Customer</a></li>
+	<li class="trenner">&bull;</li>
+	<li><a href="#" class="internal-link"
+		onClick="activateSubApplication('1');return false;">Mail</a></li>
+	<li class="trenner">&bull;</li>
+	<li><a href="#" class="internal-link"
+		onClick="activateSubApplication('2');return false;">Order</a></li>
+</ul>
+<div id="menu1-holder">
+<ul class="menu">
+	<li onmouseover="show(this)" onmouseout="hide(this)"><a href="#"
+		onfocus="blurLink(this);" onClick="menuAction('new');return false;">New</a>
+	</li>
+
+	<li onmouseover="show(this)" onmouseout="hide(this)"><a href="#"
+		onfocus="blurLink(this);"
+		onClick="menuAction('history.back');return false;"><img valign="center" src="%URL%/backward.gif">&nbsp;</a></li>
+
+	<li onmouseover="show(this)" onmouseout="hide(this)"><a href="#"
+		onfocus="blurLink(this);"
+		onClick="menuAction('history.forward');return false;"><img valign="center" src="%URL%/forward.gif">&nbsp;</a></li>
+
+</ul>
+</div>
+</div>
+
+</body>
+</html>
