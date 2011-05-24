@@ -10,23 +10,35 @@
  *******************************************************************************/
 package org.eclipse.riena.demo.client.lnf;
 
+import org.eclipse.swt.SWT;
+
 import org.eclipse.riena.ui.swt.lnf.ColorLnfResource;
 import org.eclipse.riena.ui.swt.lnf.FontLnfResource;
 import org.eclipse.riena.ui.swt.lnf.ILnfCustomizer;
 import org.eclipse.riena.ui.swt.lnf.LnfKeyConstants;
-import org.eclipse.swt.SWT;
-
 
 /**
  * Webtheme for the demo client
  */
 public class WebTheme extends EclipseTheme {
-	private static final ColorLnfResource COLOR_BLACK = new ColorLnfResource(0,0,0);
+	private static final ColorLnfResource COLOR_BLACK = new ColorLnfResource(0, 0, 0);
+	private static final ColorLnfResource COLOR_WHITE = new ColorLnfResource(255, 255, 255);
+	private static final ColorLnfResource COLOR_LIGHT_GREY = new ColorLnfResource(243, 243, 244);
 
 	@Override
 	public void customizeLnf(final ILnfCustomizer lnf) {
 		super.customizeLnf(lnf);
 		customizeSettings(lnf);
+		lnf.putLnfResource(LnfKeyConstants.NAVIGATION_BACKGROUND, COLOR_WHITE);
+		lnf.putLnfResource(LnfKeyConstants.STATUSLINE_BACKGROUND, COLOR_WHITE);
+		lnf.putLnfResource(LnfKeyConstants.COOLBAR_BACKGROUND, COLOR_WHITE);
+
+		lnf.putLnfResource(LnfKeyConstants.TITLELESS_SHELL_BACKGROUND, COLOR_WHITE);
+		lnf.putLnfResource(LnfKeyConstants.STATUSLINE_UI_PROCESS_LIST_BACKGROUND, COLOR_WHITE);
+		lnf.putLnfResource(LnfKeyConstants.GRAB_CORNER_BACKGROUND, COLOR_WHITE);
+
+		lnf.putLnfResource(LnfKeyConstants.MODULE_GROUP_WIDGET_BACKGROUND, COLOR_LIGHT_GREY);
+		lnf.putLnfResource(LnfKeyConstants.SUB_MODULE_TREE_BACKGROUND, COLOR_LIGHT_GREY);
 	}
 
 	private void customizeSettings(final ILnfCustomizer lnf) {
@@ -54,7 +66,7 @@ public class WebTheme extends EclipseTheme {
 
 	@Override
 	protected ColorLnfResource getPrimaryBackground() {
-		return super.getPrimaryBackground();
+		return COLOR_WHITE;
 	}
 
 	@Override

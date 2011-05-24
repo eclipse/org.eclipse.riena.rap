@@ -20,8 +20,8 @@
       <branding
             body="theme/body.html"
             id="org.eclipse.riena.demo.client.webtheme.branding"
-            servletName="webtheme"
-            themeId="org.eclipse.riena.demo.client.webtheme"
+            servletName="rap"
+            themeId="org.eclipse.rap.rwt.theme.Default"
             title="Riena on RAP">
       </branding>
    </extension>
@@ -64,10 +64,12 @@
          point="org.eclipse.riena.ui.swt.lnfRenderers">
       <renderer
             class="org.eclipse.riena.demo.client.lnf.WebThemeHeaderRenderer"
+            lnfid="WebLnf"
             lnfkey="SubApplication.switcherRenderer">
       </renderer>
       <renderer
             class="org.eclipse.riena.demo.client.lnf.WebShellBorderRenderer"
+            lnfid="WebLnf"
             lnfkey="TitlelessShell.borderRenderer">
       </renderer>
    </extension>

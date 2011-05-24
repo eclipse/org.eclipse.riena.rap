@@ -11,14 +11,13 @@
 
 package org.eclipse.riena.demo.client.lnf;
 
-
 import org.eclipse.riena.ui.swt.lnf.rienadefault.RienaDefaultLnf;
 
 /**
  * Look and Feel (Lnf) of the example application.<br>
  * The Lnf uses its own theme.
  */
-public class WebLnf extends RienaDefaultLnf  {
+public class WebLnf extends RienaDefaultLnf {
 	/**
 	 * ID of this Look and Feel
 	 */
@@ -35,6 +34,7 @@ public class WebLnf extends RienaDefaultLnf  {
 	 * @see org.eclipse.riena.ui.swt.lnf.rienadefault.RienaDefaultLnf#getLnfId()
 	 */
 
+	@Override
 	protected String getLnfId() {
 		return LNF_ID;
 	}

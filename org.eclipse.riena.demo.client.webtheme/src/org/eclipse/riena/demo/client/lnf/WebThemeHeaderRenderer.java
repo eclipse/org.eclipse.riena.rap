@@ -24,15 +24,10 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.osgi.framework.Bundle;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.riena.internal.demo.client.Activator;
-import org.eclipse.riena.navigation.ApplicationNodeManager;
-import org.eclipse.riena.navigation.ISubApplicationNode;
-import org.eclipse.riena.navigation.NavigationNodeId;
-import org.eclipse.riena.navigation.ui.swt.component.SubApplicationItem;
-import org.eclipse.riena.navigation.ui.swt.lnf.renderer.SubApplicationSwitcherRenderer;
-import org.eclipse.riena.ui.core.marker.HiddenMarker;
 import org.eclipse.rwt.RWT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -41,7 +36,14 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Canvas;
-import org.osgi.framework.Bundle;
+
+import org.eclipse.riena.internal.demo.client.Activator;
+import org.eclipse.riena.navigation.ApplicationNodeManager;
+import org.eclipse.riena.navigation.ISubApplicationNode;
+import org.eclipse.riena.navigation.NavigationNodeId;
+import org.eclipse.riena.navigation.ui.swt.component.SubApplicationItem;
+import org.eclipse.riena.navigation.ui.swt.lnf.renderer.SubApplicationSwitcherRenderer;
+import org.eclipse.riena.ui.core.marker.HiddenMarker;
 
 @SuppressWarnings("restriction")
 public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
@@ -51,19 +53,19 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 	private String template;
 
 	public WebThemeHeaderRenderer() {
-		template = loadTemplate("/theme/header_template.html");
-		String baseURL = getBaseURL();
-		template = template.replace("%URL%", baseURL);
+		template = loadTemplate("/theme/header_template.html"); //$NON-NLS-1$
+		final String baseURL = getBaseURL();
+		template = template.replace("%URL%", baseURL); //$NON-NLS-1$
 	}
 
 	@Override
-	public void paint(GC gc, Object value) {
+	public void paint(final GC gc, final Object value) {
 		if (null == browser) {
-			Canvas parent = (Canvas) value;
+			final Canvas parent = (Canvas) value;
 			parent.setLayout(new FillLayout());
 			browser = new Browser(parent, SWT.None);
-			new SubApplicationSwitchFunction(browser, "activateSubApplication");
-			new MenuFunction(browser, "menuAction");
+			new SubApplicationSwitchFunction(browser, "activateSubApplication"); //$NON-NLS-1$
+			new MenuFunction(browser, "menuAction"); //$NON-NLS-1$
 			browser.setText(template);
 		}
 
@@ -74,15 +76,15 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 
 	private String getBaseURL() {
 		// Protocol, ip & port
-		ServletContext sc = RWT.getRequest().getSession().getServletContext();
-		String realPath = sc.getRealPath("/");
+		final ServletContext sc = RWT.getRequest().getSession().getServletContext();
+		final String realPath = sc.getRealPath("/"); //$NON-NLS-1$
 
-		HttpServletRequest request = RWT.getRequest();
-		String protocol = "http://";
-		String ip = request.getLocalAddr();
-		int port = request.getLocalPort();
-		String URL = protocol + ip + ":" + port;
-		String webAppName = "";
+		final HttpServletRequest request = RWT.getRequest();
+		final String protocol = "http://"; //$NON-NLS-1$
+		final String ip = request.getLocalAddr();
+		final int port = request.getLocalPort();
+		final String URL = protocol + ip + ":" + port; //$NON-NLS-1$
+		String webAppName = ""; //$NON-NLS-1$
 
 		if (realPath == null) { // Start application locally within Eclipse
 								// (Windows)
@@ -94,22 +96,21 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 
 	@Override
 	public Rectangle getBounds() {
-		Rectangle bounds = super.getBounds();
+		final Rectangle bounds = super.getBounds();
 		return new Rectangle(0, 0, bounds.width, bounds.height);
 	}
 
 	private class SubApplicationSwitchFunction extends BrowserFunction {
-		public SubApplicationSwitchFunction(Browser browser, String name) {
+		public SubApplicationSwitchFunction(final Browser browser, final String name) {
 			super(browser, name);
 		}
 
-		public Object function(Object[] arguments) {
-			Object param = arguments[0];
-			int index = Integer.parseInt((String) param);
-			SubApplicationItem subApplicationItem = getVisibleItems()
-					.get(index);
-			ISubApplicationNode subApplicationNode = subApplicationItem
-					.getSubApplicationNode();
+		@Override
+		public Object function(final Object[] arguments) {
+			final Object param = arguments[0];
+			final int index = Integer.parseInt((String) param);
+			final SubApplicationItem subApplicationItem = getVisibleItems().get(index);
+			final ISubApplicationNode subApplicationNode = subApplicationItem.getSubApplicationNode();
 
 			subApplicationNode.activate();
 			return null;
@@ -117,22 +118,21 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 	}
 
 	private class MenuFunction extends BrowserFunction {
-		public MenuFunction(Browser browser, String name) {
+		public MenuFunction(final Browser browser, final String name) {
 			super(browser, name);
 		}
 
-		public Object function(Object[] arguments) {
-			Object param = arguments[0];
-			String value = (String) param;
+		@Override
+		public Object function(final Object[] arguments) {
+			final Object param = arguments[0];
+			final String value = (String) param;
 
-
-			if ("new".equals(value)){
-				ApplicationNodeManager.getApplicationNode().navigate(new NavigationNodeId("riena.demo.client.CustomerRecord")); //$NON-NLS-1$
-			}
-			else if ("history.back".equals(value)){
+			if ("new".equals(value)) { //$NON-NLS-1$
+				ApplicationNodeManager.getApplicationNode().navigate(
+						new NavigationNodeId("riena.demo.client.CustomerRecord")); //$NON-NLS-1$
+			} else if ("history.back".equals(value)) { //$NON-NLS-1$
 				ApplicationNodeManager.getApplicationNode().historyBack();
-			}
-			else if ("history.forward".equals(value)){
+			} else if ("history.forward".equals(value)) { //$NON-NLS-1$
 				ApplicationNodeManager.getApplicationNode().historyForward();
 			}
 			return null;
@@ -154,6 +154,7 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 	 * @param items
 	 *            the items to set
 	 */
+	@Override
 	public void setItems(final List<SubApplicationItem> items) {
 		this.items = items;
 	}
@@ -168,54 +169,53 @@ public class WebThemeHeaderRenderer extends SubApplicationSwitcherRenderer {
 		return items;
 	}
 
-	private File getTemplate(String templateName) {
+	private File getTemplate(final String templateName) {
 		Bundle bundle = null;
 
 		// FIXME
-		for (Bundle frag : Platform.getFragments(Activator.getDefault()
-				.getBundle())) {
-			if ("org.eclipse.riena.demo.client.webtheme".equals(frag
+		for (final Bundle frag : Platform.getFragments(Activator.getDefault().getBundle())) {
+			if ("org.eclipse.riena.demo.client.webtheme".equals(frag //$NON-NLS-1$
 					.getSymbolicName())) {
 				bundle = frag;
 				break;
 			}
 		}
-		URL fileURL = bundle.getEntry(templateName);
+		final URL fileURL = bundle.getEntry(templateName);
 		URL realUrl;
 		try {
 			realUrl = FileLocator.resolve(fileURL);
-			File file = new File(realUrl.toURI());
+			final File file = new File(realUrl.toURI());
 			return file;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
-		} catch (URISyntaxException e) {
+		} catch (final URISyntaxException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	private String loadTemplate(String templateName) {
+	private String loadTemplate(final String templateName) {
 		FileReader fileReader = null;
 		try {
-			File template = getTemplate(templateName);
+			final File template = getTemplate(templateName);
 			fileReader = new FileReader(template);
-		} catch (FileNotFoundException e1) {
+		} catch (final FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
 
-		BufferedReader br = new BufferedReader(fileReader);
-		StringBuilder bob = new StringBuilder();
+		final BufferedReader br = new BufferedReader(fileReader);
+		final StringBuilder bob = new StringBuilder();
 		String line = null;
 		try {
 			while ((line = br.readLine()) != null) {
 				bob.append(line).append("\n"); //$NON-NLS-1$
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				br.close();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		}
