@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Riena SWT Plug-in - RAP Fragment
 Bundle-SymbolicName: org.eclipse.riena.ui.swt.rap;singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 4.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.riena.core,
  org.eclipse.riena.ui.core,
