@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.riena.build.feature.rap.sdk"
       label="Riena Target Componens for RAP"
-      version="3.0.0.qualifier"
+      version="4.0.0.qualifier"
       provider-name="Eclipse.org - Riena">
 
    <description url="http://www.eclipse.org/riena">
