@@ -110,8 +110,8 @@ public class Activator extends AbstractRienaUIPlugin {
 				final ServiceContext context = ContextProvider.getContext();
 				if (context != null) {
 					final Display sessionDisplay = LifeCycleUtil.getSessionDisplay();
-					final IDisplayAdapter adapter = (IDisplayAdapter) sessionDisplay.getAdapter(IDisplayAdapter.class);
-					final ISessionStore session = adapter.getSession();
+					final IDisplayAdapter adapter = sessionDisplay.getAdapter(IDisplayAdapter.class);
+					final ISessionStore session = adapter.getSessionStore();
 					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
 					event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), fakeContext);
 					event.getJob().setProperty(new QualifiedName(RAP, THREAD), Thread.currentThread());
