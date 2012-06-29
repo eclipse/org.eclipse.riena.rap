@@ -1,24 +1,34 @@
 Getting started with Riena on RAP
 
-1. Install the RAP tooling into your SDK
-   http://download.eclipse.org/rt/rap/1.4/tooling
+1. [Tooling]
+   Install the Rich Ajax Platform (RAP) Tools
+   Help -> Install New Software...
 
-2. Use RAP 1.4 M7 or later as your target.
+2. [Target platform]
+   Use RAP 1.5 or later as your target.
    http://eclipse.org/rap/downloads/
+   
+   Add the Equinox SDK to the target platform.
+   http://download.eclipse.org/equinox/
 
-3. Import Riena (HEAD) and additional Equinox code into your workspace using
-   riena_on_rap-pserver.psf which is found in the org.eclipse.riena.releng.rap
-   project. (use riena_on_rap-ssh2.psf is you are a committer)
-
-   User: anonymous
-   Password: <blank>
-
+3. [Projects]
+   Clone the Riena repository - git://dev.eclipse.org/gitroot/riena/org.eclipse.riena.git
+   
+   Clone the Riena RAP repository - git://dev.eclipse.org/gitroot/riena/org.eclipse.riena.rap.git
+   
+   Import org.eclipse.riena.releng.rap/riena_on_rap-pserver.psf
+   CVS User: anonymous
+   CVS Password: <blank>
    (CVS via pserver may not work if you are behind a corporate proxy / firewall)
 
-4. There should be no compiler errors at this point.
+4. There should be (almost) no compiler errors at this point.
 
 5. Launch 'RAP Mail Sample (RCP UI)' in
    org.eclipse.riena.sample.app.client.rcpmail
 
 6. Launch some of the other 'RAP .....launch' configurations in the other
    examples.
+   
+   
+   [Important]
+   Do not use "Add required bundles" since it may add some RCP bundles, which are not desired in a RAP launch configuration.
