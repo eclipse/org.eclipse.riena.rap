@@ -14,7 +14,6 @@ import org.eclipse.rwt.lifecycle.UICallBack;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
-import org.eclipse.riena.navigation.INavigationNode;
 import org.eclipse.riena.navigation.ui.swt.views.ModuleNavigationListener;
 
 /**
@@ -36,12 +35,11 @@ public class ModuleNavigationListenerRAP extends ModuleNavigationListener {
 
 		NodeSwitcherRAP(final TreeItem item) {
 			super(item);
-			final INavigationNode<?> node = (INavigationNode<?>) item.getData();
-			final String instanceId = node.getNodeId().getInstanceId();
+			final String instanceId = getNavigationNode().getNodeId().getInstanceId();
 			if (instanceId != null) {
 				id = instanceId;
 			} else {
-				id = String.format("%s%d", node.getNodeId().toString(), System.currentTimeMillis()); //$NON-NLS-1$
+				id = String.format("%s%d", getNavigationNode().getNodeId().toString(), System.currentTimeMillis()); //$NON-NLS-1$
 			}
 		}
 
