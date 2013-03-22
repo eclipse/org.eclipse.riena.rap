@@ -22,7 +22,9 @@ import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -205,6 +207,17 @@ public final class SWTFacadeRAP extends SWTFacade {
 		// do nothing
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * The RAP Implementation of {@link ScrollBar} doesn't support the property
+	 * {@code increment}, because of that this implementation do nothing.
+	 */
+	@Override
+	public void setPageIncrement(final ScrollBar scrollBar, final int value) {
+		// do nothing
+	}
+
 	@Override
 	public void beforeInfoFlyoutShow(final InfoFlyout flyout) {
 		UICallBack.activate(flyout.getPropertyName());
@@ -213,6 +226,19 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	public void afterInfoFlyoutShow(final InfoFlyout flyout) {
 		UICallBack.deactivate(flyout.getPropertyName());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.riena.ui.swt.facades.SWTFacade#textExtent(org.eclipse.swt
+	 * .graphics.GC, java.lang.String, int)
+	 */
+	@Override
+	public Point textExtent(final GC gc, final String string, final int flags) {
+		// RAP does not support flags
+		return gc.textExtent(string);
 	}
 
 	// protected methods
