@@ -20,22 +20,22 @@ public final class DialogConstantsFacadeRAP extends DialogConstantsFacade {
 
 	@Override
 	public String getOkLabel() {
-		return IDialogConstants.OK_LABEL;
+		return IDialogConstants.get().OK_LABEL;
 	}
 
 	@Override
 	public String getCancelLabel() {
-		return IDialogConstants.CANCEL_LABEL;
+		return IDialogConstants.get().CANCEL_LABEL;
 	}
 
 	@Override
 	public String getYesLabel() {
-		return IDialogConstants.YES_LABEL;
+		return IDialogConstants.get().YES_LABEL;
 	}
 
 	@Override
 	public String getNoLabel() {
-		return IDialogConstants.NO_LABEL;
+		return IDialogConstants.get().NO_LABEL;
 	}
 
 }
