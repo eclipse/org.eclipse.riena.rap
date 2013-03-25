@@ -13,13 +13,11 @@ package org.eclipse.riena.ui.swt.facades;
 import java.util.EventListener;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.rwt.lifecycle.UICallBack;
+import org.eclipse.rap.rwt.lifecycle.UICallBack;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseTrackListener;
-import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.GC;
@@ -247,9 +245,10 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	protected void addModifyListeners(final Control control, final Object[] listeners) {
 		for (final Object listener : listeners) {
-			if (listener instanceof ModifyListener) {
-				ModifyEvent.addListener(control, (ModifyListener) listener);
-			} else if (listener instanceof Listener) {
+			//			if (listener instanceof ModifyListener) {
+			//				ModifyEvent.addListener(control, (ModifyListener) listener);
+			//			} else 
+			if (listener instanceof Listener || listener instanceof ModifyListener) {
 				control.addListener(SWT.Modify, (Listener) listener);
 			} else {
 				throw new IllegalArgumentException("unsupported listener type: " + listener); //$NON-NLS-1$
@@ -260,9 +259,10 @@ public final class SWTFacadeRAP extends SWTFacade {
 	@Override
 	protected void addVerifyListeners(final Control control, final Object[] listeners) {
 		for (final Object listener : listeners) {
-			if (listener instanceof VerifyListener) {
-				VerifyEvent.addListener(control, (VerifyListener) listener);
-			} else if (listener instanceof Listener) {
+			//			if (listener instanceof VerifyListener) {
+			//				VerifyEvent.addListener(control, (VerifyListener) listener);
+			//			} else 
+			if (listener instanceof Listener || listener instanceof VerifyListener) {
 				control.addListener(SWT.Verify, (Listener) listener);
 			} else {
 				throw new IllegalArgumentException("unsupported listener type: " + listener); //$NON-NLS-1$
@@ -272,9 +272,11 @@ public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
 	protected Object[] removeModifyListeners(final Control control) {
-		final Object[] typedListeners = ModifyEvent.getListeners(control);
-		for (final Object listener : typedListeners) {
-			ModifyEvent.removeListener(control, (ModifyListener) listener);
+		final Listener[] typedListeners = control.getListeners(SWT.Modify);
+		//		final Object[] typedListeners = ModifyEvent.getListeners(control);
+		for (final Listener listener : typedListeners) {
+			//			ModifyEvent.removeListener(control, (ModifyListener) listener);
+			control.removeListener(SWT.Modify, listener);
 		}
 		final Object[] untypedListeners = control.getListeners(SWT.Modify);
 		for (final Object listener : untypedListeners) {
@@ -288,9 +290,11 @@ public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
 	protected Object[] removeVerifyListeners(final Control control) {
-		final Object[] typedListeners = VerifyEvent.getListeners(control);
-		for (final Object listener : typedListeners) {
-			VerifyEvent.removeListener(control, (VerifyListener) listener);
+		final Listener[] typedListeners = control.getListeners(SWT.Verify);
+		//		final Object[] typedListeners = VerifyEvent.getListeners(control);
+		for (final Listener listener : typedListeners) {
+			//			VerifyEvent.removeListener(control, (VerifyListener) listener);
+			control.removeListener(SWT.Verify, listener);
 		}
 		final Object[] untypedListeners = control.getListeners(SWT.Verify);
 		for (final Object listener : untypedListeners) {

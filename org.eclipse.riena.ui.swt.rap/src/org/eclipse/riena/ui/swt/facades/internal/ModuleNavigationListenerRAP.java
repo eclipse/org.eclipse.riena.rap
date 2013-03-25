@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.riena.ui.swt.facades.internal;
 
-import org.eclipse.rwt.lifecycle.UICallBack;
+import org.eclipse.rap.rwt.lifecycle.UICallBack;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 

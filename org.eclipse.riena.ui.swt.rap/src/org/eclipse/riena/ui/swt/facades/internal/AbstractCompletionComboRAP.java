@@ -11,13 +11,12 @@
  *******************************************************************************/
 package org.eclipse.riena.ui.swt.facades.internal;
 
-import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.TypedListener;
 
 import org.eclipse.riena.ui.swt.CompletionCombo;
 
@@ -41,37 +40,48 @@ abstract class AbstractCompletionComboRAP extends CompletionCombo {
 	@Override
 	public void addModifyListener(final ModifyListener listener) {
 		checkWidget();
-		ModifyEvent.addListener(this, listener);
+		//		ModifyEvent.addListener(this, listener);
+		final TypedListener typedListener = new TypedListener(listener);
+		addListener(SWT.Modify, typedListener);
 	}
 
 	@Override
 	public void addSelectionListener(final SelectionListener listener) {
 		checkWidget();
-		SelectionEvent.addListener(this, listener);
+		//		SelectionEvent.addListener(this, listener);
+		final TypedListener typedListener = new TypedListener(listener);
+		addListener(SWT.Selection, typedListener);
+		addListener(SWT.DefaultSelection, typedListener);
 	}
 
 	@Override
 	public void addVerifyListener(final VerifyListener listener) {
 		checkWidget();
-		VerifyEvent.addListener(this, listener);
+		//		VerifyEvent.addListener(this, listener);
+		final TypedListener typedListener = new TypedListener(listener);
+		addListener(SWT.Verify, typedListener);
 	}
 
 	@Override
 	public void removeModifyListener(final ModifyListener listener) {
 		checkWidget();
-		ModifyEvent.removeListener(this, listener);
+		//		ModifyEvent.removeListener(this, listener);
+		removeListener(SWT.Modify, listener);
 	}
 
 	@Override
 	public void removeSelectionListener(final SelectionListener listener) {
 		checkWidget();
-		SelectionEvent.removeListener(this, listener);
+		//		SelectionEvent.removeListener(this, listener);
+		removeListener(SWT.Selection, listener);
+		removeListener(SWT.DefaultSelection, listener);
 	}
 
 	@Override
 	public void removeVerifyListener(final VerifyListener listener) {
 		checkWidget();
-		VerifyEvent.addListener(this, listener);
+		//		VerifyEvent.addListener(this, listener);
+		removeListener(SWT.Verify, listener);
 	}
 
 }

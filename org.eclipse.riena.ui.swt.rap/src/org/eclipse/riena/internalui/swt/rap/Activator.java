@@ -16,13 +16,13 @@ import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.rap.rwt.internal.lifecycle.ContextUtil;
+import org.eclipse.rap.rwt.internal.lifecycle.LifeCycleUtil;
+import org.eclipse.rap.rwt.internal.service.ContextProvider;
+import org.eclipse.rap.rwt.internal.service.ServiceContext;
+import org.eclipse.rap.rwt.lifecycle.UICallBack;
+import org.eclipse.rap.rwt.service.UISession;
 import org.eclipse.rap.ui.internal.progress.JobManagerAdapter;
-import org.eclipse.rwt.internal.lifecycle.FakeContextUtil;
-import org.eclipse.rwt.internal.lifecycle.LifeCycleUtil;
-import org.eclipse.rwt.internal.service.ContextProvider;
-import org.eclipse.rwt.internal.service.ServiceContext;
-import org.eclipse.rwt.lifecycle.UICallBack;
-import org.eclipse.rwt.service.ISessionStore;
 import org.eclipse.swt.internal.widgets.IDisplayAdapter;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.progress.UIJob;
@@ -111,8 +111,10 @@ public class Activator extends AbstractRienaUIPlugin {
 				if (context != null) {
 					final Display sessionDisplay = LifeCycleUtil.getSessionDisplay();
 					final IDisplayAdapter adapter = sessionDisplay.getAdapter(IDisplayAdapter.class);
-					final ISessionStore session = adapter.getSessionStore();
-					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
+					//					final ISessionStore session = adapter.getSessionStore();
+					//					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
+					final UISession uiSession = adapter.getUISession();
+					final ServiceContext fakeContext = ContextUtil.createFakeContext(uiSession);
 					event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), fakeContext);
 					event.getJob().setProperty(new QualifiedName(RAP, THREAD), Thread.currentThread());
 

@@ -11,7 +11,7 @@
 
 package org.eclipse.riena.ui.swt.facades;
 
-import org.eclipse.rwt.graphics.Graphics;
+import org.eclipse.rap.rwt.graphics.Graphics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
