@@ -38,7 +38,6 @@ import org.eclipse.riena.ui.swt.InfoFlyout;
 import org.eclipse.riena.ui.swt.facades.internal.CompletionComboRAP;
 import org.eclipse.riena.ui.swt.facades.internal.CompletionComboWithImageRAP;
 import org.eclipse.riena.ui.swt.facades.internal.InfoFlyoutRAP;
-import org.eclipse.riena.ui.swt.facades.internal.ModuleNavigationListenerRAP;
 
 /**
  * Implements {@link SWTFacade} for RAP.
@@ -90,10 +89,10 @@ public final class SWTFacadeRAP extends SWTFacade {
 		// do nothing
 	}
 
-	@Override
-	public void attachModuleNavigationListener(final Tree tree) {
-		new ModuleNavigationListenerRAP(tree);
-	}
+	//	@Override
+	//	public void attachModuleNavigationListener(final Tree tree) {
+	//		new ModuleNavigationListenerRAP(tree);
+	//	}
 
 	@Override
 	public void copyEventKeyLocation(final Event source, final Event target) {
