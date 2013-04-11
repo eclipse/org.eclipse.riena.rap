@@ -11,9 +11,11 @@
 package org.eclipse.riena.ui.swt.facades;
 
 import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.rap.rwt.lifecycle.UICallBack;
+import org.eclipse.rap.rwt.service.ServerPushSession;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseMoveListener;
@@ -43,6 +45,7 @@ import org.eclipse.riena.ui.swt.facades.internal.InfoFlyoutRAP;
  * Implements {@link SWTFacade} for RAP.
  */
 public final class SWTFacadeRAP extends SWTFacade {
+	private final Map<String, ServerPushSession> pushSessions = new HashMap<String, ServerPushSession>();
 
 	@Override
 	public void addEraseItemListener(final Table table, final Listener listener) {
@@ -217,12 +220,17 @@ public final class SWTFacadeRAP extends SWTFacade {
 
 	@Override
 	public void beforeInfoFlyoutShow(final InfoFlyout flyout) {
-		UICallBack.activate(flyout.getPropertyName());
+		final ServerPushSession serverPushSession = new ServerPushSession();
+		serverPushSession.start();
+		pushSessions.put(flyout.getPropertyName(), serverPushSession);
 	}
 
 	@Override
 	public void afterInfoFlyoutShow(final InfoFlyout flyout) {
-		UICallBack.deactivate(flyout.getPropertyName());
+		final ServerPushSession serverPushSession = pushSessions.remove(flyout.getPropertyName());
+		if (serverPushSession != null) {
+			serverPushSession.stop();
+		}
 	}
 
 	/*

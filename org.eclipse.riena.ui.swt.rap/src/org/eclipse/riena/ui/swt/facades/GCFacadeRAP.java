@@ -11,12 +11,10 @@
 
 package org.eclipse.riena.ui.swt.facades;
 
-import org.eclipse.rap.rwt.graphics.Graphics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -26,8 +24,7 @@ public class GCFacadeRAP extends GCFacade {
 
 	@Override
 	public int getAdvanceWidth(final GC gc, final char ch) {
-		final Point extent = Graphics.textExtent(gc.getFont(), String.valueOf(ch), 0);
-		return extent.x;
+		return gc.textExtent(String.valueOf(ch)).x;
 	}
 
 	@Override

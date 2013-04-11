@@ -20,7 +20,7 @@ import org.eclipse.rap.rwt.internal.lifecycle.ContextUtil;
 import org.eclipse.rap.rwt.internal.lifecycle.LifeCycleUtil;
 import org.eclipse.rap.rwt.internal.service.ContextProvider;
 import org.eclipse.rap.rwt.internal.service.ServiceContext;
-import org.eclipse.rap.rwt.lifecycle.UICallBack;
+import org.eclipse.rap.rwt.service.ServerPushSession;
 import org.eclipse.rap.rwt.service.UISession;
 import org.eclipse.rap.ui.internal.progress.JobManagerAdapter;
 import org.eclipse.swt.internal.widgets.IDisplayAdapter;
@@ -84,6 +84,7 @@ public class Activator extends AbstractRienaUIPlugin {
 		private static final String SERVICE_CONTEXT = "serviceContext"; //$NON-NLS-1$
 		private static final String RAP = "context"; //$NON-NLS-1$
 		private static final String THREAD = "currentThread"; //$NON-NLS-1$
+		private static final String PUSH_SESSION = "serverPushSession"; //$NON-NLS-1$
 
 		@Override
 		public void aboutToRun(final IJobChangeEvent event) {
@@ -111,18 +112,17 @@ public class Activator extends AbstractRienaUIPlugin {
 				if (context != null) {
 					final Display sessionDisplay = LifeCycleUtil.getSessionDisplay();
 					final IDisplayAdapter adapter = sessionDisplay.getAdapter(IDisplayAdapter.class);
-					//					final ISessionStore session = adapter.getSessionStore();
-					//					final ServiceContext fakeContext = FakeContextUtil.createFakeContext(session);
 					final UISession uiSession = adapter.getUISession();
 					final ServiceContext fakeContext = ContextUtil.createFakeContext(uiSession);
 					event.getJob().setProperty(new QualifiedName(RAP, SERVICE_CONTEXT), fakeContext);
 					event.getJob().setProperty(new QualifiedName(RAP, THREAD), Thread.currentThread());
-
 				}
+
 				display.asyncExec(new Runnable() {
 					public void run() {
-						final String id = String.valueOf(event.getJob().hashCode());
-						UICallBack.activate(id);
+						final ServerPushSession serverPushSession = new ServerPushSession();
+						event.getJob().setProperty(new QualifiedName(RAP, PUSH_SESSION), serverPushSession);
+						serverPushSession.start();
 					}
 				});
 			}
@@ -133,17 +133,13 @@ public class Activator extends AbstractRienaUIPlugin {
 			final Display display = LifeCycleUtil.getSessionDisplay();
 			if (display != null && !display.isDisposed()) {
 				try {
-					display.asyncExec(new Runnable() {
-						public void run() {
-							final Job job = event.getJob();
-							final String id = String.valueOf(job.hashCode());
-							UICallBack.deactivate(id);
-						}
-					});
-				} catch (final Throwable t) {
-
+					final Object property = event.getJob().getProperty(new QualifiedName(RAP, PUSH_SESSION));
+					if (property instanceof ServerPushSession) {
+						((ServerPushSession) property).stop();
+					}
+				} finally {
+					ContextProvider.releaseContextHolder();
 				}
-				ContextProvider.releaseContextHolder();
 			}
 		}
 
