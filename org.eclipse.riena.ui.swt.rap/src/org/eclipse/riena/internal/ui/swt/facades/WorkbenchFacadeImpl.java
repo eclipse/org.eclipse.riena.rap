@@ -10,8 +10,10 @@
  *******************************************************************************/
 package org.eclipse.riena.internal.ui.swt.facades;
 
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.WorkbenchPage;
 
 /**
@@ -29,6 +31,18 @@ public class WorkbenchFacadeImpl extends WorkbenchFacade {
 	@Override
 	public void showView(final IWorkbenchPage page, final IViewReference viewRef) {
 		((WorkbenchPage) page).getActivePerspective().bringToTop(viewRef);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.riena.internal.ui.swt.facades.WorkbenchFacade#getActiveShell
+	 * ()
+	 */
+	@Override
+	public Shell getActiveShell() {
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 	}
 
 }
