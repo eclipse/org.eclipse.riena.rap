@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.riena.internal.ui.swt.facades;
 
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbenchPage;
@@ -43,6 +44,49 @@ public class WorkbenchFacadeImpl extends WorkbenchFacade {
 	@Override
 	public Shell getActiveShell() {
 		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.riena.internal.ui.swt.facades.WorkbenchFacade#closeWorkbench
+	 * ()
+	 */
+	@Override
+	public boolean closeWorkbench() {
+		return PlatformUI.getWorkbench().close();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.riena.internal.ui.swt.facades.WorkbenchFacade#
+	 * getActiveWindowShell()
+	 */
+	@Override
+	public Shell getActiveWindowShell() {
+		if (PlatformUI.isWorkbenchRunning() && PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null) {
+			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.riena.internal.ui.swt.facades.WorkbenchFacade#getWorkbenchDisplay
+	 * ()
+	 */
+	@Override
+	public Display getWorkbenchDisplay() {
+		if (PlatformUI.isWorkbenchRunning() && PlatformUI.getWorkbench().getDisplay() != null) {
+			return PlatformUI.getWorkbench().getDisplay();
+		} else {
+			return null;
+		}
 	}
 
 }
