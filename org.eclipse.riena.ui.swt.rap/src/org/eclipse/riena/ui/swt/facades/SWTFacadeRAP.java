@@ -92,11 +92,6 @@ public final class SWTFacadeRAP extends SWTFacade {
 		// do nothing
 	}
 
-	//	@Override
-	//	public void attachModuleNavigationListener(final Tree tree) {
-	//		new ModuleNavigationListenerRAP(tree);
-	//	}
-
 	@Override
 	public void copyEventKeyLocation(final Event source, final Event target) {
 	}
@@ -199,8 +194,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * The RAP Implementation of {@link ScrollBar} doesn't support the property
-	 * {@code increment}, because of that this implementation do nothing.
+	 * The RAP Implementation of {@link ScrollBar} doesn't support the property {@code increment}, because of that this implementation do nothing.
 	 */
 	@Override
 	public void setIncrement(final ScrollBar scrollBar, final int value) {
@@ -210,8 +204,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * The RAP Implementation of {@link ScrollBar} doesn't support the property
-	 * {@code increment}, because of that this implementation do nothing.
+	 * The RAP Implementation of {@link ScrollBar} doesn't support the property {@code increment}, because of that this implementation do nothing.
 	 */
 	@Override
 	public void setPageIncrement(final ScrollBar scrollBar, final int value) {
@@ -236,9 +229,7 @@ public final class SWTFacadeRAP extends SWTFacade {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.riena.ui.swt.facades.SWTFacade#textExtent(org.eclipse.swt
-	 * .graphics.GC, java.lang.String, int)
+	 * @see org.eclipse.riena.ui.swt.facades.SWTFacade#textExtent(org.eclipse.swt .graphics.GC, java.lang.String, int)
 	 */
 	@Override
 	public Point textExtent(final GC gc, final String string, final int flags) {
