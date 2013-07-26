@@ -26,7 +26,7 @@ import org.eclipse.riena.ui.swt.CompletionCombo;
  * {@code UIControlsFactory.createCompletionCombo(...)} to automatically get the
  * correct platform-specific (RCP or RAP) instance.
  */
-public class CompletionComboRAP extends AbstractCompletionComboRAP {
+public class CompletionComboRAP extends CompletionCombo {
 
 	public CompletionComboRAP(final Composite parent, final int style) {
 		super(parent, style);

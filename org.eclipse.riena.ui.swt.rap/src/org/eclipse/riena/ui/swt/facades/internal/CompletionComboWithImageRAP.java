@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
+import org.eclipse.riena.ui.swt.CompletionCombo;
+
 /**
  * A CompletionCombo with a text field, with an optional image on the left, and
  * a table widget (which can show an image next to each item).
@@ -26,7 +28,7 @@ import org.eclipse.swt.widgets.TableItem;
  * {@code UIControlsFactory.createCompletionComboWithImage(...)} to
  * automatically get the correct platform-specific (RCP or RAP) instance.
  */
-public class CompletionComboWithImageRAP extends AbstractCompletionComboRAP {
+public class CompletionComboWithImageRAP extends CompletionCombo {
 
 	public CompletionComboWithImageRAP(final Composite parent, final int style) {
 		super(parent, style);
