@@ -7,6 +7,6 @@ Fragment-Host: org.eclipse.riena.demo.client;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: javax.servlet;version="2.5.0",
  javax.servlet.http;version="2.5.0",
- org.eclipse.rap.rwt
+ org.eclipse.rap.rwt;resolution:=optional
 Require-Bundle: org.eclipse.equinox.http.registry;bundle-version="1.1.100"
 Bundle-Vendor: Eclipse.org - Riena
