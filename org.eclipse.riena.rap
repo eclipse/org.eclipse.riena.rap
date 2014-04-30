@@ -1,0 +1,6 @@
+tree ad4808261d40b2770763e914974ff035bab62b64
+parent 4cf3557bdca6e8c12b319f4e6354d8fe25cf1026
+author Jordan Dukadinov <jordan.dukadinov@compeople.de> 1364227831 +0100
+committer Jordan Dukadinov <jordan.dukadinov@compeople.de> 1364227831 +0100
+
+reverted code to use correct IDialogConstants
