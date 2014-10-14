@@ -73,5 +73,12 @@
             lnfkey="TitlelessShell.borderRenderer">
       </renderer>
    </extension>
+   
+      <!-- comment in for Riena on RAP --> 
+   <extension point="org.eclipse.rap.ui.entrypoint">
+     <entrypoint id="example.application.entrypoint"
+        applicationId="org.eclipse.riena.demo.client.application"
+        path="/demoClient" />
+   </extension>
 
 </fragment>
