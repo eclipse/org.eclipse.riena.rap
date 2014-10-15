@@ -21,12 +21,10 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.riena.ui.swt.CompletionCombo;
 
 /**
- * A CompletionCombo with a text field, with an optional image on the left, and
- * a table widget (which can show an image next to each item).
+ * A CompletionCombo with a text field, with an optional image on the left, and a table widget (which can show an image next to each item).
  * <p>
- * <b>Important:</b> this is the RAP-specific implementation of this widget. Use
- * {@code UIControlsFactory.createCompletionComboWithImage(...)} to
- * automatically get the correct platform-specific (RCP or RAP) instance.
+ * <b>Important:</b> this is the RAP-specific implementation of this widget. Use {@code UIControlsFactory.createCompletionComboWithImage(...)} to automatically
+ * get the correct platform-specific (RCP or RAP) instance.
  */
 public class CompletionComboWithImageRAP extends CompletionCombo {
 
@@ -39,6 +37,11 @@ public class CompletionComboWithImageRAP extends CompletionCombo {
 		final Label result = new Label(parent, SWT.NONE);
 		result.setBackground(getBackground());
 		return result;
+	}
+
+	@Override
+	protected void updateExtendedText(final Control list, final int index) {
+		// nothing to do
 	}
 
 	@Override
