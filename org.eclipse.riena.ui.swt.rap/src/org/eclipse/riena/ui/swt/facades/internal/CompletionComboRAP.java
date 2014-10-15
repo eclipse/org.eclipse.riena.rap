@@ -22,8 +22,7 @@ import org.eclipse.riena.ui.swt.CompletionCombo;
 /**
  * A {@link CompletionCombo} with a text field and a list widget.
  * <p>
- * <b>Important:</b> this is the RAP-specific implementation of this widget. Use
- * {@code UIControlsFactory.createCompletionCombo(...)} to automatically get the
+ * <b>Important:</b> this is the RAP-specific implementation of this widget. Use {@code UIControlsFactory.createCompletionCombo(...)} to automatically get the
  * correct platform-specific (RCP or RAP) instance.
  */
 public class CompletionComboRAP extends CompletionCombo {
@@ -35,6 +34,11 @@ public class CompletionComboRAP extends CompletionCombo {
 	@Override
 	protected Label createLabel(final Composite parent) {
 		return null;
+	}
+
+	@Override
+	protected void updateExtendedText(final Control list, final int index) {
+		// nothing to do
 	}
 
 	@Override
