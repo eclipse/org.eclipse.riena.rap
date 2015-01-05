@@ -6,7 +6,8 @@ Bundle-Version: 6.1.0.qualifier
 Bundle-Activator: org.eclipse.riena.internal.navigation.ui.swt.rap.Activator
 Require-Bundle: org.eclipse.riena.ui.swt;bundle-version="6.1.0",
  org.eclipse.riena.core;bundle-version="6.1.0",
- org.eclipse.riena.navigation.ui.swt;bundle-version="6.1.0"
+ org.eclipse.riena.navigation.ui.swt;bundle-version="6.1.0",
+ org.eclipse.riena.navigation.ui.swt.presentation
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Eclipse.org - Riena
