@@ -12,19 +12,17 @@ package org.eclipse.riena.ui.swt.facades;
 
 import org.eclipse.jface.viewers.ColumnViewer;
 
+import org.eclipse.riena.ui.swt.facades.internal.ITableRidgetToolTipSupport;
+
 /**
  * <i>Implements</i> {@link TableRidgetToolTipSupportFacade} for RAP.
  */
 public class TableRidgetToolTipSupportFacadeRAP extends TableRidgetToolTipSupportFacade {
 
 	@Override
-	public void disable() {
-		// not supported
-	}
-
-	@Override
-	public void enableFor(final ColumnViewer viewer) {
-		// not supported
+	public ITableRidgetToolTipSupport enableFor(final ColumnViewer viewer) {
+       // not supported
+		return null;
 	}
 
 	@Override
